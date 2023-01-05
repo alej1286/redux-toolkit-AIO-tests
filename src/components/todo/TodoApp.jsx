@@ -1,15 +1,22 @@
-import React from 'react'
-import { useGetTodosQuery } from '../../app/api/todosApi'
+import React, { useState } from 'react'
+import { useGetTodosQuery,useGetTodoByIdQuery } from '../../app/api/todosApi'
 
 export const TodoApp = () => {
+  
+
+  const [todoId, setTodoId] = useState(1)
  const {data:todos =[],isLoading} = useGetTodosQuery();
-  return (
+ const {data:todo,isLoading2} = useGetTodoByIdQuery(todoId);
+ return (
     <>  
     
     <div>TodosApp - RTK Query</div>
     <hr />
     <h4>isLoading: {isLoading ? 'True':'False'}</h4>
-    <pre>...
+    <button onClick={()=>{
+      setTodoId(todoId+1)
+    }}>Next todo Id</button>
+    <pre>{JSON.stringify(todo)}
     </pre>
     <ul>
       {
