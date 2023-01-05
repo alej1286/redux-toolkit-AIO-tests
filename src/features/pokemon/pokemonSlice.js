@@ -12,9 +12,15 @@
           state.isLoading = true;
          },
          setPokemons: (state, action) => {
+          /* return {
+            ...state,
+            isLoading : false,
+            page : action.payload.page,
+            pokemons : action.payload.pokemons}; */
           state.isLoading = false;
           state.page = action.payload.page;
           state.pokemons = action.payload.pokemons;
+          return state;
          },
        },
       })
